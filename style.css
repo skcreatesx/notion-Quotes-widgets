@@ -10,7 +10,7 @@
   :root {
     --text-color: #feffff;
     --wave-color: #7a75d1;
-    --container-bg: rgba(0, 0, 0, 0.02);
+    --container-bg: #191919;
     --toast-bg: rgba(255, 255, 255, 0.9);
     --toast-text: #1a1a1a;
   }
