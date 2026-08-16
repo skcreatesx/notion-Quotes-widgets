@@ -1,35 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Daily Quote Widget</title>
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="widget-container">
-        <!-- Top Lavender SVG Wave -->
-        <svg class="header-wave" viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-            <path d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,58.7C1200,64,1320,64,1380,64L1440,64L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"></path>
-        </svg>
+      <!-- Top Lavender SVG Wave -->
+      <svg
+        class="header-wave"
+        viewBox="0 0 1440 120"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M0,32L60,42.7C120,53,240,75,360,74.7C480,75,600,53,720,48C840,43,960,53,1080,58.7C1200,64,1320,64,1380,64L1440,64L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z"
+        ></path>
+      </svg>
 
-        <!-- Clickable Quote Container -->
-        <div class="quote-card" id="quote-card" role="button" tabindex="0" aria-label="Click for a new quote">
-            <p class="quote-text" id="quote-text"></p>
-            <p class="author-text" id="author-text"></p>
-        </div>
+      <!-- Clickable Quote Container -->
+      <div
+        class="quote-card"
+        id="quote-card"
+        role="button"
+        tabindex="0"
+        aria-label="Click for a new quote"
+      >
+        <p class="quote-text" id="quote-text"></p>
+        <p class="author-text" id="author-text"></p>
+      </div>
 
-        <!-- Toast Notification -->
-        <div class="toast" id="toast"></div>
+      <!-- Toast Notification -->
+      <div class="toast" id="toast"></div>
 
-        <!-- Hidden Topic Switcher Button (Absolute Bottom-Right Corner) -->
-        <button class="hidden-topic-btn" id="hidden-topic-btn" aria-label="Change quote category"></button>
+      <!-- Hidden Topic Switcher Button (Absolute Bottom-Right Corner) -->
+      <button
+        class="hidden-topic-btn"
+        id="hidden-topic-btn"
+        aria-label="Change quote category"
+      ></button>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
