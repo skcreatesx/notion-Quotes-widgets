@@ -1,120 +1,119 @@
-document.addEventListener('DOMContentLoaded', () => {
+:root {
+    --text-color: #2D2D2D;
+    --wave-color: #A7A3FF;
+    --container-bg: rgba(255, 255, 255, 0.02);
+    --toast-bg: rgba(0, 0, 0, 0.8);
+    --toast-text: #ffffff;
+}
 
-  /* ---------------------------------------
-     1. Quote Data
-  --------------------------------------- */
-  const quotesData = {
-    general: [
-      { text: "The best way to predict the future is to create it.", author: "Abraham Lincoln" },
-      { text: "What we think, we become.", author: "Buddha" },
-      { text: "Do one thing every day that scares you.", author: "Eleanor Roosevelt" },
-      { text: "Simplicity is the ultimate sophistication.", author: "Leonardo da Vinci" },
-      { text: "Well done is better than well said.", author: "Benjamin Franklin" }
-    ],
-    finance: [
-      { text: "An investment in knowledge pays the best interest.", author: "Benjamin Franklin" },
-      { text: "Do not save what is left after spending; spend what is left after saving.", author: "Warren Buffett" },
-      { text: "The stock market is a device for transferring money from the impatient to the patient.", author: "Warren Buffett" },
-      { text: "It's not how much money you make, but how much money you keep.", author: "Robert Kiyosaki" },
-      { text: "Financial freedom is available to those who learn about it and work for it.", author: "Robert Kiyosaki" }
-    ],
-    students: [
-      { text: "Education is the passport to the future, for tomorrow belongs to those who prepare for it today.", author: "Malcolm X" },
-      { text: "The beautiful thing about learning is that no one can take it away from you.", author: "B.B. King" },
-      { text: "Success is the sum of small efforts, repeated day in and day out.", author: "Robert Collier" },
-      { text: "Don't watch the clock; do what it does. Keep going.", author: "Sam Levenson" },
-      { text: "The expert in anything was once a beginner.", author: "Helen Hayes" }
-    ]
-  };
-
-  const quoteTextEl = document.getElementById('quoteText');
-  const quoteAuthorEl = document.getElementById('quoteAuthor');
-  const refreshBtn = document.getElementById('refreshBtn');
-
-  /* ---------------------------------------
-     2. Parse URL Parameters -> get niche
-  --------------------------------------- */
-  function getActiveCategory() {
-    const params = new URLSearchParams(window.location.search);
-    const niche = (params.get('niche') || '').toLowerCase().trim();
-
-    if (niche && quotesData.hasOwnProperty(niche)) {
-      return niche;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-color: #E2E8F0;
+        --wave-color: #7A75D1;
+        --container-bg: rgba(0, 0, 0, 0.02);
+        --toast-bg: rgba(255, 255, 255, 0.9);
+        --toast-text: #1a1a1a;
     }
-    return 'general'; // default fallback
-  }
+}
 
-  const activeCategory = getActiveCategory();
-  const activeQuotes = quotesData[activeCategory];
+body {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+}
 
-  /* ---------------------------------------
-     3. Date-Seeded Daily Quote
-  --------------------------------------- */
-  function getLocalDateSeed() {
-    const now = new Date();
-    const yyyy = now.getFullYear();
-    const mm = String(now.getMonth() + 1).padStart(2, '0');
-    const dd = String(now.getDate()).padStart(2, '0');
-    const dateString = `${yyyy}-${mm}-${dd}`; // e.g. "2026-08-16"
+.widget-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: var(--container-bg);
+    box-sizing: border-box;
+}
 
-    // Simple numeric hash from the date string
-    let seed = 0;
-    for (let i = 0; i < dateString.length; i++) {
-      seed += dateString.charCodeAt(i) * (i + 1);
-    }
-    return seed;
-  }
+.header-wave {
+    width: 100%;
+    height: 50px;
+    display: block;
+    fill: var(--wave-color);
+    transition: fill 0.3s ease;
+}
 
-  function getDailyQuote(category) {
-    const seed = getLocalDateSeed();
-    const index = seed % category.length;
-    return category[index];
-  }
+.quote-card {
+    padding: 1.5rem 2rem 2.5rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease;
+}
 
-  /* ---------------------------------------
-     Render helper
-  --------------------------------------- */
-  function renderQuote(quoteObj) {
-    quoteTextEl.style.opacity = 0;
-    quoteAuthorEl.style.opacity = 0;
+.quote-card:active {
+    transform: scale(0.99);
+}
 
-    setTimeout(() => {
-      quoteTextEl.textContent = quoteObj.text;
-      quoteAuthorEl.textContent = quoteObj.author;
-      quoteTextEl.style.transition = 'opacity 0.3s ease';
-      quoteAuthorEl.style.transition = 'opacity 0.3s ease';
-      quoteTextEl.style.opacity = 1;
-      quoteAuthorEl.style.opacity = 1;
-    }, 150);
-  }
+.quote-text {
+    font-family: 'Caveat', cursive;
+    font-size: 2.3rem;
+    color: var(--text-color);
+    line-height: 1.25;
+    margin: 0 0 1rem 0;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
 
-  // Initial load: date-seeded "Quote of the Day"
-  renderQuote(getDailyQuote(activeQuotes));
+.author-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.75;
+    margin: 0;
+    transition: opacity 0.3s ease, color 0.3s ease;
+}
 
-  /* ---------------------------------------
-     4. Refresh Override (random, bypasses seed)
-  --------------------------------------- */
-  function getRandomQuote(category, excludeQuote) {
-    if (category.length === 1) return category[0];
+.author-text::before {
+    content: "— ";
+}
 
-    let newQuote;
-    do {
-      const randomIndex = Math.floor(Math.random() * category.length);
-      newQuote = category[randomIndex];
-    } while (excludeQuote && newQuote.text === excludeQuote.text);
+/* Hidden Topic Button perfectly blended into absolute bottom-right corner */
+.hidden-topic-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    z-index: 10;
+}
 
-    return newQuote;
-  }
+/* Toast Notification Styling */
+.toast {
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background-color: var(--toast-bg);
+    color: var(--toast-text);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 20;
+}
 
-  let currentQuote = getDailyQuote(activeQuotes);
-
-  refreshBtn.addEventListener('click', () => {
-    refreshBtn.classList.remove('spinning');
-    void refreshBtn.offsetWidth; // restart animation
-    refreshBtn.classList.add('spinning');
-
-    currentQuote = getRandomQuote(activeQuotes, currentQuote);
-    renderQuote(currentQuote);
-  });
-
-});
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
