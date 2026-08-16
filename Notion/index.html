@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daily Quote</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="quote-card" id="quoteCard">
+      <!-- Soft continuous wave header -->
+      <svg
+        class="wave"
+        viewBox="0 0 600 100"
+        preserveAspectRatio="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          class="wave-path"
+          d="M0,50 C100,90 200,10 300,50 C400,90 500,10 600,50 L600,0 L0,0 Z"
+        ></path>
+      </svg>
+
+      <div class="content">
+        <p class="quote-text" id="quoteText">Loading today's quote...</p>
+        <p class="quote-author" id="quoteAuthor">&mdash;</p>
+      </div>
+
+      <button
+        class="refresh-btn"
+        id="refreshBtn"
+        aria-label="Get another quote"
+        title="New quote"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M23 4v6h-6"></path>
+          <path d="M1 20v-6h6"></path>
+          <path
+            d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
