@@ -12,19 +12,9 @@
     --wave-color: #7a75d1;
     --container-bg: #191919;
     --toast-bg: feffff;
-    --toast-text: #1a1a1a;
+    --toast-text: feffff;
   }
-  body {
-    background-color: 1f1f1f;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    font-family: "Inter", sans-serif;
-  }
+
 }
 
 
