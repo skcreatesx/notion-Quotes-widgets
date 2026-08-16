@@ -1,119 +1,125 @@
 :root {
-    --text-color: #2D2D2D;
-    --wave-color: #A7A3FF;
-    --container-bg: rgba(255, 255, 255, 0.02);
-    --toast-bg: rgba(0, 0, 0, 0.8);
-    --toast-text: #ffffff;
+  --text-color: #2d2d2d;
+  --wave-color: #a7a3ff;
+  --container-bg: rgba(255, 255, 255, 0.02);
+  --toast-bg: rgba(0, 0, 0, 0.8);
+  --toast-text: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --text-color: #E2E8F0;
-        --wave-color: #7A75D1;
-        --container-bg: rgba(0, 0, 0, 0.02);
-        --toast-bg: rgba(255, 255, 255, 0.9);
-        --toast-text: #1a1a1a;
-    }
+  :root {
+    --text-color: #1f1f1f;
+    --wave-color: #7a75d1;
+    --container-bg: rgba(0, 0, 0, 0.02);
+    --toast-bg: rgba(255, 255, 255, 0.9);
+    --toast-text: #1a1a1a;
+  }
 }
 
 body {
-    background-color: transparent;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    font-family: 'Inter', sans-serif;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: "Inter", sans-serif;
 }
 
 .widget-container {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-    margin: auto;
-    border-radius: 16px;
-    overflow: hidden;
-    background-color: var(--container-bg);
-    box-sizing: border-box;
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--container-bg);
+  box-sizing: border-box;
 }
 
 .header-wave {
-    width: 100%;
-    height: 50px;
-    display: block;
-    fill: var(--wave-color);
-    transition: fill 0.3s ease;
+  width: 100%;
+  height: 50px;
+  display: block;
+  fill: var(--wave-color);
+  transition: fill 0.3s ease;
 }
 
 .quote-card {
-    padding: 1.5rem 2rem 2.5rem 2rem;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.2s ease;
+  padding: 1.5rem 2rem 2.5rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.2s ease;
 }
 
 .quote-card:active {
-    transform: scale(0.99);
+  transform: scale(0.99);
 }
 
 .quote-text {
-    font-family: 'Caveat', cursive;
-    font-size: 2.3rem;
-    color: var(--text-color);
-    line-height: 1.25;
-    margin: 0 0 1rem 0;
-    transition: opacity 0.3s ease, color 0.3s ease;
+  font-family: "Caveat", cursive;
+  font-size: 2.3rem;
+  color: var(--text-color);
+  line-height: 1.25;
+  margin: 0 0 1rem 0;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
 }
 
 .author-text {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: var(--text-color);
-    opacity: 0.75;
-    margin: 0;
-    transition: opacity 0.3s ease, color 0.3s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-color);
+  opacity: 0.75;
+  margin: 0;
+  transition:
+    opacity 0.3s ease,
+    color 0.3s ease;
 }
 
 .author-text::before {
-    content: "— ";
+  content: "— ";
 }
 
 /* Hidden Topic Button perfectly blended into absolute bottom-right corner */
 .hidden-topic-btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 28px;
-    height: 28px;
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    z-index: 10;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 10;
 }
 
 /* Toast Notification Styling */
 .toast {
-    position: absolute;
-    bottom: 12px;
-    left: 50%;
-    transform: translateX(-50%) translateY(15px);
-    background-color: var(--toast-bg);
-    color: var(--toast-text);
-    padding: 5px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 20;
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background-color: var(--toast-bg);
+  color: var(--toast-text);
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  z-index: 20;
 }
 
 .toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
